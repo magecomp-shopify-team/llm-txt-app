@@ -218,10 +218,9 @@ const PlanIndex = () => {
             yearly: planConfig[5],
             ids: [5, 6],
             features: [
-                "Unlimited products",
-                "Unlimited collections",
-                "Unlimited pages",
-                "Unlimited blogs",
+                "Unlimited : ",
+                "products, collections, pages",
+                "and blogs",
             ],
         },
     ];

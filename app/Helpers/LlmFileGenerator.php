@@ -23,6 +23,10 @@ class LlmFileGenerator
      */
     public function generate(): string
     {
+        if(!$this->shop->plan_id && !$this->shop->shopify_freemium) {
+            return '';
+        }
+
         $settings = $this->shop->llmSetting;
 
         $shopInfo = $this->getShopInfo();
@@ -31,8 +35,8 @@ class LlmFileGenerator
         $content = "# Shop Information\n";
         $content .= "- **Name:** {$shopInfo['name']}\n";
         $content .= "- **Description:** " . ($shopInfo['description'] ?? '-') . "\n";
-        $content .= "- **Domain:** https://{$shopInfo['myshopifyDomain']}\n";
-        $content .= "- **Primary URL:** {$domain}\n\n---\n\n";
+        $content .= "- **Domain:** {$domain}\n";
+        $content .= "\n---\n\n";
 
         $newCounts = [
             'products' => 0,

@@ -12,12 +12,14 @@ import {
   Spinner,
   Button,
   BlockStack,
+  ChoiceList,
 } from "@shopify/polaris";
 import { useAppBridge, SaveBar } from "@shopify/app-bridge-react";
 import { deepEqual, fetchApi, getRedirectUrl } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { shop_data } from "../../app";
 import Footer from "../../components/Footer/Footer";
+import PlanSelectWarning from "../../components/PlanSelectWarning/PlanSelectWarning";
 
 function formatDate(dateString) {
   if (!dateString) return "Not set";
@@ -173,10 +175,15 @@ export default function DashboardPage() {
   return (
     <Page title="LLM Feed Generator">
       <Layout>
+        {(!shop_data?.plan_id && !shop_data?.shopify_freemium) && (
+          <Layout.Section>
+            <PlanSelectWarning />
+          </Layout.Section>
+        )}
         {/* Feed settings */}
         <Layout.Section>
           <Card>
-            <Box opacity={loadingSettings ? 0.5 : 1} pointerEvents={loadingSettings ? 'none' : 'auto'}>
+            <Box opacity={(loadingSettings || (!shop_data?.plan_id && !shop_data?.shopify_freemium)) ? 0.5 : 1} pointerEvents={(loadingSettings || (!shop_data?.plan_id && !shop_data?.shopify_freemium)) ? 'none' : 'auto'}>
               <BlockStack gap="400">
                 <Text as="h2" variant="headingMd">
                   LLMs settings
@@ -205,15 +212,17 @@ export default function DashboardPage() {
                   />
                 </InlineStack>
                 <Box width="250px">
-                  <Select
-                    label="Sync frequency"
-                    options={[
+                  <ChoiceList
+                    title="Sync frequency"
+                    tone=""
+                    choices={[
                       { label: "Daily", value: "daily" },
                       { label: "Weekly", value: "weekly" },
                       { label: "Monthly", value: "monthly" },
                     ]}
-                    value={settings.syncFrequency}
-                    onChange={(v) => updateSetting("syncFrequency", v)}
+                    selected={[settings.syncFrequency]}
+                    onChange={(v) => updateSetting("syncFrequency", v[0])}
+                    allowMultiple={false}
                   />
                 </Box>
               </BlockStack>
@@ -236,6 +245,7 @@ export default function DashboardPage() {
                     <Button
                       onClick={handleGenerate}
                       loading={isSaving}
+                      disabled={isSaving || loadingSettings || (!shop_data?.plan_id && !shop_data?.shopify_freemium)}
                     >
                       Generate Now
                     </Button>
@@ -250,7 +260,7 @@ export default function DashboardPage() {
                 Next scheduled sync: {formatDate(nextSyncedAt)}
               </Text>
               <Text as="p">
-                Public URL: <Button variant="plain" onClick={handleClickPreview}><code>/llms.txt</code></Button>
+                Public URL: <Button variant="plain" onClick={handleClickPreview} disabled={isSaving || loadingSettings || (!shop_data?.plan_id && !shop_data?.shopify_freemium)}><code>/llms.txt</code></Button>
               </Text>
 
 
