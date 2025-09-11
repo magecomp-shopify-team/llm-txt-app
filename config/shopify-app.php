@@ -385,6 +385,10 @@ return [
     */
 
     'webhooks' => [
+        [
+            'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'APP_UNINSTALLED'),
+            'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://(your-domain).com/webhook/app-uninstalled')
+        ],
         /*
             [
                 'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'ORDERS_CREATE'),
@@ -400,7 +404,8 @@ return [
                 'address' => env('SHOPIFY_WEBHOOK_3_ADDRESS', 'https://example.com/webhook/orders-create'),
                 'class' => \App\Shopify\Actions\ExampleAppJob::class
             ],
-        */],
+        */
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -419,7 +424,8 @@ return [
                 'display_scope' => env('SHOPIFY_SCRIPTTAG_1_DISPLAY_SCOPE', 'online_store')
             ],
             ...
-        */],
+        */
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -443,7 +449,8 @@ return [
                 'job' => env('AFTER_AUTHENTICATE_JOB'), // example: \App\Jobs\AfterAuthorizeJob::class
                 'inline' => env('AFTER_AUTHENTICATE_JOB_INLINE', false) // False = dispatch job for later, true = dispatch immediately
             ],
-        */],
+        */
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -504,25 +511,25 @@ return [
 
     'models' => [
         /*
-        * The fully qualified class name of the Charge model.
-        */
+         * The fully qualified class name of the Charge model.
+         */
         'charge' => Osiset\ShopifyApp\Storage\Models\Charge::class,
 
         /*
-        * The fully qualified class name of the Plan model.
-        */
+         * The fully qualified class name of the Plan model.
+         */
         'plan' => Osiset\ShopifyApp\Storage\Models\Plan::class,
     ],
 
     'table_names' => [
         /*
-        * The table name for Charge model.
-        */
+         * The table name for Charge model.
+         */
         'charges' => 'charges',
 
         /*
-        * The table name for Plan model.
-        */
+         * The table name for Plan model.
+         */
         'plans' => 'plans',
 
         /*

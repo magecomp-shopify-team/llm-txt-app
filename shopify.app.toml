@@ -23,7 +23,7 @@ api_version = "2025-07"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_products,write_products,read_online_store_pages,read_content"
+scopes = "read_products,write_products,read_online_store_pages,read_content,read_online_store_navigation,write_online_store_navigation"
 
 [auth]
 redirect_urls = [ "https://apply-suspended-billion-leaf.trycloudflare.com/authenticate" ]
