@@ -12,7 +12,8 @@
 <body>
     <div id="app"></div>
 
-   <script type="application/json" id="shop_data">{!!  json_encode(value: $user)  !!}</script>
+   <script type="application/json" id="shop_data">{!!  json_encode( $user)  !!}</script>
+   <script type="application/json" id="planConfig">{!!  json_encode( $planConfig)  !!}</script>
 
     @viteReactRefresh
     @vite(['resources/js/app.jsx'])
