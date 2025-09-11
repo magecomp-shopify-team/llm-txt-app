@@ -1,39 +1,40 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "fd00214934a2dc42ecd5a56fe124d342"
-name = "LLMS Txt Generator"
-application_url = "https://that-defining-electronic-bottles.trycloudflare.com/"
+client_id = "7a67c1fa7066b89ae86509c91d8f5b6f"
+name = "LLM Text Generator"
+handle = "llm-txt-mc"
+application_url = "https://apply-suspended-billion-leaf.trycloudflare.com/"
 embedded = true
-handle = "llms-txt-generator-mc"
 
 [webhooks]
-api_version = "2025-04"
+api_version = "2025-07"
 
   [[webhooks.subscriptions]]
   uri = "/webhook/customers-data-request"
-  compliance_topics = [ "customers/redact" ]
+  compliance_topics = [ "customers/data_request" ]
 
   [[webhooks.subscriptions]]
   uri = "/webhook/customers-redact"
-  compliance_topics = [ "customers/data_request" ]
+  compliance_topics = [ "customers/redact" ]
 
   [[webhooks.subscriptions]]
   uri = "/webhook/shop-redact"
   compliance_topics = [ "shop/redact" ]
 
-[auth]
-redirect_urls = [
-  "https://that-defining-electronic-bottles.trycloudflare.com/authenticate"
-]
-
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "read_products,write_products,read_online_store_pages,read_content,read_online_store_navigation,write_online_store_navigation"
 
+[auth]
+redirect_urls = [ "https://apply-suspended-billion-leaf.trycloudflare.com/authenticate" ]
+
 [app_proxy]
-url = "https://that-defining-electronic-bottles.trycloudflare.com/proxy/llms"
+url = "https://apply-suspended-billion-leaf.trycloudflare.com/check-limit-proxy"
 subpath = "llms"
 prefix = "a"
 
 [pos]
 embedded = false
+
+[build]
+include_config_on_deploy = true

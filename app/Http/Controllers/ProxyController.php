@@ -17,8 +17,8 @@ class ProxyController extends Controller
         $folderName = $shop;
         $filePath = $folderName . '/llms.txt';
         $content = Storage::disk('public')->get($filePath);
-        return response("{% layout none %}<pre>$content</pre>", 200, headers: [
-            'Content-Type' => 'application/liquid'
+        return response("<pre>$content</pre>", 200, headers: [
+            'Content-Type' => 'text/html; charset=UTF-8'
         ]);
     }
 }
