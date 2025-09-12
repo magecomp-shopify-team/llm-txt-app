@@ -173,7 +173,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <Page title="LLM Feed Generator">
+    <Page title="LLMs.txt Generator">
       <Layout>
         {(!shop_data?.plan_id && !shop_data?.shopify_freemium) && (
           <Layout.Section>
