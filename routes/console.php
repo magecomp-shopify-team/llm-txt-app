@@ -13,5 +13,5 @@ Schedule::command('queue:work --queue=default --timeout=100 --stop-when-empty')-
 
 /*
     Crontab entry:
-    * * * * * cd /path-to-your-app && php artisan schedule:run >> /dev/null 2>&1
+    * * * * * cd /var/www/llm-txt && php artisan schedule:run >> /dev/null 2>&1
 */
