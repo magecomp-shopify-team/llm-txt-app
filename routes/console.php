@@ -9,7 +9,7 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::call('sync-resources')->daily();
-Schedule::command('queue:work --queue=default --timeout=100 --stop-when-empty')->everyMinute();
+// Schedule::command('queue:work --queue=default --timeout=100 --stop-when-empty')->everyMinute();
 
 /*
     Crontab entry:
